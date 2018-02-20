@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="#EB5928"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="Enigme"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="278dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:text="Enigme"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/afficherEnigme"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:layout_marginTop="16dp"
+        android:text="Ici l'enigme s'affiche"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/xrep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/reponse"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/afficherEnigme"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:text="@string/reponse" />
+
+    <TextView
+        android:id="@+id/xtitre_rep"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/reponse_equipe"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/xrep"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/xbtn_valider"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#BDD248"
+        android:text="@string/valider_reponse"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/xtitre_rep"
+        tools:layout_editor_absoluteX="0dp"
+        tools:text="@string/valider_reponse" />
+
+    <Button
+        android:id="@+id/xbtn_indice"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:background="#EB5928"
+        android:text="@string/indice"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/xbtn_valider"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/xbtn_aide"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:background="#9A5FA8"
+        android:text="@string/aide"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/xbtn_indice"
+        tools:layout_editor_absoluteX="0dp" />
+
+</android.support.constraint.ConstraintLayout>
