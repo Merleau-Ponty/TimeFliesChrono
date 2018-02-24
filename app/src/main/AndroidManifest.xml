@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lmp.timeflies.player">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Play_DebutDePartie">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Play_Classement"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_DebutDePartie">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_DebutDePartie" />
+        </activity>
+        <activity
+            android:name=".Play_Inscription"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_DebutDePartie">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_DebutDePartie" />
+        </activity>
+
+        <activity
+            android:name=".Play_Objectifs"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_DebutDePartie">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_DebutDePartie" />
+        </activity>
+        <activity
+            android:name=".Play_ListeEnigmes"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_Objectifs">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_Objectifs" />
+        </activity>
+        <activity
+            android:name=".Play_Enigme"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_ListeEnigmes">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_ListeEnigmes" />
+        </activity>
+        <activity
+            android:name="com.lmp.timeflies.technique.Play_ScanActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_Enigme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_Enigme" />
+        </activity>
+        <activity
+            android:name="com.lmp.timeflies.technique.Play_Chat"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_Enigme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_Enigme" />
+        </activity>
+        <activity
+            android:name="com.lmp.timeflies.player.Play_FinDePartie"
+            android:label="@string/app_name"
+            android:parentActivityName=".Play_Enigme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Play_Enigme" />
+        </activity>
+        <service
+            android:name="com.lmp.timeflies.technique.ChronoService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+    </application>
+
+</manifest>
