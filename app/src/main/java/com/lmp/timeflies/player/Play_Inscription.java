@@ -73,7 +73,7 @@ public class Play_Inscription extends Activity {
             public void onClick(View view) {
                 //appelle de la fonction d'insertion de l'équipe
                 Equipe uneEquipe = new Equipe (nombreEquipe + 1, nomEquipe, numeroTel, id_a);
-                Intent laccueil = new Intent(getApplicationContext(), Play_Main.class);
+                Intent laccueil = new Intent(getApplicationContext(), Play_DebutDePartie.class);
                 laccueil.putExtra("inscrption","ok");
                 startActivity(laccueil);
             }

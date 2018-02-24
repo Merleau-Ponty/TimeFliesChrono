@@ -1,16 +1,21 @@
 package com.lmp.timeflies.player;
 
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import com.lmp.timeflies.dao.DAO_Global;
 import com.lmp.timeflies.metier.Enigme;
 import com.lmp.timeflies.metier.Objectif;
+import com.lmp.timeflies.technique.ChronoService;
 
 import java.util.ArrayList;
 
@@ -25,6 +30,9 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
 
     TextView nomObjectif;
     TextView descrObjectif;
+    private TextView sous_titre;
+    public String date_time;
+
     //ListView listeEnigmes;
 
     @Override
@@ -41,8 +49,7 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
         String descr = extras.getString("o_description");
 
         //on affiche les deux
-        nomObjectif= (TextView) findViewById(R.id.xnom_obj);
-
+        sous_titre = (TextView) findViewById(R.id.xnom_tv);
 
         //on affiche la liste des énigmes de l'Objectif
         liste_enigmes(id_obj);
@@ -88,6 +95,31 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
         String keyExtra = lesEnigmesObj.get(i);
         enigmeCliquee.putExtra(labExtra,keyExtra);
         startActivity(enigmeCliquee);
+    }
+
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String str_time = intent.getStringExtra("time");
+            //tv_timer.setText(str_time);
+            date_time = str_time;
+            sous_titre.setText("Voci les énigmes de cette salle - Temps restant : "+date_time);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(broadcastReceiver,new IntentFilter(ChronoService.str_receiver));
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
     }
 }
 
