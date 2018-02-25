@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TimeFlies</string>
+    <string name="inscript">S\'inscrire</string>
+    <string name="stats">Classements</string>
+    <string name="demarrer">Commencer la partie</string>
+    <string name="creer">Inscrire son équipe</string>
+    <string name="go">GO !!!</string>
+    <string name="logo">avion</string>
+    <string name="nom_objectif">Votre objectif</string>
+    <string name="descr_objectif">Il s\'agit de...</string>
+    <string name="titre_enigme">titre de  l\'énigme</string>
+    <string name="descr_enigme">Ici l\'enigme s\'affiche</string>
+    <string name="reponse">Votre réponse...</string>
+    <string name="reponse_equipe">Entrez votre réponse</string>
+    <string name="valider_reponse">Valider</string>
+    <string name="indice">Indice</string>
+    <string name="aide">Aide</string>
+    <string name="scan">Scannez un QR Code pour obtenir un indice !</string>
+    <string name="retour_enigme">Répondre à l\'énigme</string>
+    <string name="sous_titre_enigme">Enigme - </string>
+</resources>
