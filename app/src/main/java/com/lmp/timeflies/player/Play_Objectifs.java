@@ -66,6 +66,7 @@ public class Play_Objectifs extends ListActivity implements AdapterView.OnItemCl
             calendar = Calendar.getInstance();
             simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
             date_time = simpleDateFormat.format(calendar.getTime());
+            mEditor.putString("minutes","2").commit();
             mEditor.putString("data", date_time).commit();
             String ok =  mpref.getString("en_cours", "");
             //Toast.makeText(getApplicationContext(), "" + ok, Toast.LENGTH_LONG).show();
@@ -102,6 +103,7 @@ public class Play_Objectifs extends ListActivity implements AdapterView.OnItemCl
         @Override
         public void onReceive(Context context, Intent intent) {
             String str_time = intent.getStringExtra("time");
+            //Toast.makeText(getApplicationContext(), "dans le receiver : " + str_time, Toast.LENGTH_SHORT).show();
             sous_titre.setText("Voici vos objectifs - Temps restant : "+str_time);
         }
     };
