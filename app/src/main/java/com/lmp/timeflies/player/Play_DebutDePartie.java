@@ -59,6 +59,11 @@ public class Play_DebutDePartie extends Activity {
                 mEditor.putString("en_cours", "on_demarre").commit();
                 button2.setText("Continuer la partie");
                 button1.setEnabled(false);
+                /*mEditor.putString("minutes","2").commit();
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                String date_time = simpleDateFormat.format(calendar.getTime());
+                mEditor.putString("data",date_time).commit();*/
             }
             else {
                 mEditor.putString("en_cours","partie_en_cours").commit();

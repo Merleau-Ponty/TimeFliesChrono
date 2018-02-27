@@ -36,7 +36,7 @@ public class Play_FinDePartie extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         String temps = extras.getString("time");
-        long mins = mpref.getLong("mins",0);
+        long mins = mpref.getLong("minsutes",0);
         long mins2 = extras.getLong("mins");
         Toast.makeText(getApplicationContext(),"v2 : "+temps+"\n"+"minutes restantes :"+mins+"/"+mins2, Toast.LENGTH_LONG).show();
         resultatTV.setText("Temps restant : "+ temps);
