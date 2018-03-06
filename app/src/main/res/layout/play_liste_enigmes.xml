@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/xnom_tv"
+        android:id="@+id/xsoustitre_tv"
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:background="#eb5928"
@@ -19,13 +19,16 @@
 
 
     <ListView
-        android:id="@+id/list"
+        android:id="@android:id/list"
         android:layout_width="368dp"
-        android:layout_height="392dp"
-        android:layout_marginTop="184dp"
+        android:layout_height="201dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.972"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/xdescr_tv"
@@ -40,18 +43,18 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xnom_tv"
+        app:layout_constraintTop_toBottomOf="@+id/xsoustitre_tv"
         tools:layout_width="0dp" />
 
     <TextView
         android:id="@+id/xdescr_tv2"
         android:layout_width="381dp"
-        android:layout_height="wrap_content"
+        android:layout_height="63dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xdescr_tv" />
