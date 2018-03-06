@@ -150,10 +150,11 @@ public class DAO_Global {
         Log.i("dans DAO avant req: ",liste.toString());
             Cursor c = maBase.rawQuery("select o_id, o_nom from objectif;", null);
             while (c.moveToNext()){
-                int id = c.getInt(0);
+                //int id = c.getInt(0);
                 String nom = c.getString(1);
                 Log.i("dans DAO : ",nom);
-                liste.add(id+" # "+nom);
+                //liste.add(id+" # "+nom);
+                liste.add(nom);
             }
         Log.i("dans DAO apres boucle:",liste.toString());
             return liste;
