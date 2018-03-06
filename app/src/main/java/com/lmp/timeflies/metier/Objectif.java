@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Objectif {
 
     private int o_id;
+    private String o_lieu;
     private String o_nom;
     private String o_description;
     private int o_points_bonus;
@@ -19,6 +20,17 @@ public class Objectif {
         this.o_nom = o_nom;
         this.o_description = o_description;
         this.o_points_bonus = o_points_bonus;
+    }
+
+    public String getO_lieu() {
+        return o_lieu;
+    }
+
+    public Objectif(int o_id, String o_lieu, String o_nom, String o_description) {
+        this.o_id = o_id;
+        this.o_nom = o_nom;
+        this.o_lieu = o_lieu;
+        this.o_description = o_description;
     }
 
     public int getO_id() {
