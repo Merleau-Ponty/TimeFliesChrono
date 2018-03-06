@@ -1,5 +1,6 @@
 package com.lmp.timeflies.player;
 
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,6 +34,12 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
     private TextView sous_titre;
     public String date_time;
 
+    String id_obj;
+    String lieu;
+    String nom;
+    String descr;
+
+
     //ListView listeEnigmes;
 
     @Override
@@ -44,13 +51,16 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
         //et la description de l'Objectif
         Bundle extras = getIntent().getExtras();
 
-        String id_obj = extras.getString("o_id");
-        String nom = extras.getString("o_nom");
-        String descr = extras.getString("o_description");
+        id_obj = extras.getString("o_id");
+        lieu = extras.getString("o_lieu");
+        nom = extras.getString("o_nom");
+        descr = extras.getString("o_description");
 
         //on affiche les deux
         sous_titre = (TextView) findViewById(R.id.xnom_tv);
+        descrObjectif = (TextView) findViewById(R.id.xdescr_tv);
 
+        descrObjectif.setText(lieu+" : "+nom);
         //on affiche la liste des énigmes de l'Objectif
         liste_enigmes(id_obj);
 
@@ -105,7 +115,8 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
             String str_time = intent.getStringExtra("time");
             //tv_timer.setText(str_time);
             date_time = str_time;
-            sous_titre.setText("Voci les énigmes de cette salle - Temps restant : "+date_time);
+            //sous_titre.setText("Votre objectif: "+nom+" - Temps restant : "+date_time);
+            sous_titre.setText("Votre objectif: - Temps restant : "+date_time);
         }
     };
 
