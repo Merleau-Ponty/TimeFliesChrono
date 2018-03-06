@@ -45,7 +45,7 @@ public class TraitementJSON extends AsyncTask<String, Void, Boolean> {
 
         Log.i("doInBack","le dÃ©part : ");
         sgbd.open();
-        //sgbd.supprimeobjectifs();
+        sgbd.supprimeObjectifs();
         try {
             url = new URL(urls[0]);
             Log.i("doInBack","le fichier distant : "+urls[0]);
@@ -68,9 +68,9 @@ public class TraitementJSON extends AsyncTask<String, Void, Boolean> {
             StringBuilder message = new StringBuilder("les objectifs : ");
             //long id;
             for (Objectif objectif : lesObjectifs) {
-                message.append(objectif.getNom());
+                message.append(objectif.getO_nom());
                 message.append("   :   ");
-                message.append(objectif.getTopo());
+                message.append(objectif.getO_description());
                 message.append("\n");
                 num++;
                 //id=sgbd.ajouteobjectif(objectif);
@@ -95,20 +95,23 @@ public class TraitementJSON extends AsyncTask<String, Void, Boolean> {
         }
 
         for(int i = 0; i < lesobjectifs.length(); i++){
-            JSONObject nuplet = null;
-            String nom, topo;
+            JSONObject objj = null;
+            String nom, topo, lieu;
+            int numero;
             Long id;
             Objectif objectif;
             try {
-                nuplet = lesobjectifs.getJSONObject(i);
-                // Log.i("rec","nuplet"+nuplet.toString());
-                nom = nuplet.getString("nom");
+                objj = lesobjectifs.getJSONObject(i);
+                numero = objj.getInt("id");
+                // Log.i("rec","objj"+objj.toString());
+                lieu = objj.getString("lieu");
                 //  Log.i("rec","nom : "+nom);
-                topo = nuplet.getString("topo");
+                nom = objj.getString("nom");
+                topo = objj.getString("topo");
                 //   Log.i("rec","topo : "+topo);
-                objectif = new Objectif(nom,topo);
+                objectif = new Objectif(numero, lieu, nom, topo);
                 lesObjectifs.add(objectif);
-                id=sgbd.ajouteobjectif(objectif);
+                id=sgbd.ajouteObjectif(objectif);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -165,7 +168,7 @@ public class TraitementJSON extends AsyncTask<String, Void, Boolean> {
     public String getLesNoms(){
         String liste = "";
         for (Objectif objectif : lesObjectifs)
-            liste += objectif.getNom()+"\n";
+            liste += objectif.getO_nom()+"\n";
         return liste;
     }
 }
