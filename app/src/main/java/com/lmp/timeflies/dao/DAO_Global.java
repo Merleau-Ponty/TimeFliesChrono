@@ -4,12 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.lmp.timeflies.metier.Avatar;
 import com.lmp.timeflies.metier.Enigme;
 import com.lmp.timeflies.metier.Equipe;
 import com.lmp.timeflies.metier.Indice;
 import com.lmp.timeflies.metier.Joueur;
+import com.lmp.timeflies.metier.Objectif;
 import com.lmp.timeflies.metier.Partie;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class DAO_Global {
     private BDHelper monBDHelper;
 
     public DAO_Global(Context context) {
-        monBDHelper = new BDHelper(context, "baseppe", null, 1);
+        monBDHelper = new BDHelper(context, "basetf", null, 1);
     }
 
     public void open() {
@@ -83,11 +85,11 @@ public class DAO_Global {
         return maBase.insert("enigme", null, v);
     }
 
-    public long ajouteAvatar(Avatar unAvatar) {
+    public long ajouteAvatar(Avatar unObjectif) {
         ContentValues v = new ContentValues();
-        v.put("a_id", unAvatar.getA_id());
-        v.put("a_libelle", unAvatar.getA_libelle());
-        v.put("a_nomfichier", unAvatar.getA_nomfichier());
+        v.put("a_id", unObjectif.getA_id());
+        v.put("a_libelle", unObjectif.getA_libelle());
+        v.put("a_nomfichier", unObjectif.getA_nomfichier());
         return maBase.insert("enigme", null, v);
     }
 
@@ -134,4 +136,44 @@ public class DAO_Global {
         return laPartie;
     }
 
+    public Long ajouteObjectif(Objectif unObjectif) {
+        ContentValues v = new ContentValues();
+        v.put("o_id", unObjectif.getO_id());
+        v.put("o_lieu", unObjectif.getO_lieu());
+        v.put("o_nom", unObjectif.getO_nom());
+        v.put("o_description", unObjectif.getO_description());
+        return maBase.insert("objectif", null, v);
+    }
+
+    public ArrayList<String> donneLesNomsDesObjectifs(){
+                    ArrayList<String> liste = new ArrayList<String>();
+        Log.i("dans DAO avant req: ",liste.toString());
+            Cursor c = maBase.rawQuery("select o_id, o_nom from objectif;", null);
+            while (c.moveToNext()){
+                int id = c.getInt(0);
+                String nom = c.getString(1);
+                Log.i("dans DAO : ",nom);
+                liste.add(id+" # "+nom);
+            }
+        Log.i("dans DAO apres boucle:",liste.toString());
+            return liste;
+        }
+
+    public ArrayList<Objectif> donneLesObjectifs(){
+        ArrayList<Objectif> liste = new ArrayList<Objectif>();
+        Cursor c = maBase.rawQuery("select o_id, o_lieu, o_nom, o_description from objectif;", null);
+        while (c.moveToNext()){
+            int id = c.getInt(0);
+            String lieu = c.getString(1);
+            String nom = c.getString(2);
+            String topo = c.getString(3);
+            Objectif objectif = new Objectif(id, lieu, nom, topo);
+            liste.add(objectif);
+        }
+        return liste;
+    }
+    public void supprimeObjectifs(){
+        maBase.delete("objectif", null, null);
+    }
 }
+
