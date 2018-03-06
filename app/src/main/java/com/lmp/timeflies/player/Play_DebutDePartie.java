@@ -12,7 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.lmp.timeflies.dao.DAO_Global;
 import com.lmp.timeflies.technique.ChronoService;
+import com.lmp.timeflies.technique.TraitementJSON;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,13 +30,21 @@ public class Play_DebutDePartie extends Activity {
 
     SharedPreferences mpref;
     SharedPreferences.Editor mEditor;
+
+    TraitementJSON tjs;
+    DAO_Global sgbd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_debut);
+
         mpref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mEditor = mpref.edit();
         //mEditor.putBoolean("en_cours",false).commit();
+        tjs = new TraitementJSON(this);
+        tjs.execute("http://btssio17.com/timeflies/objectifs.json");
+        sgbd= new DAO_Global(this);
 
         button1 = (Button) findViewById(R.id.button1);
         button1.setEnabled(true);
@@ -59,11 +69,6 @@ public class Play_DebutDePartie extends Activity {
                 mEditor.putString("en_cours", "on_demarre").commit();
                 button2.setText("Continuer la partie");
                 button1.setEnabled(false);
-                /*mEditor.putString("minutes","2").commit();
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-                String date_time = simpleDateFormat.format(calendar.getTime());
-                mEditor.putString("data",date_time).commit();*/
             }
             else {
                 mEditor.putString("en_cours","partie_en_cours").commit();

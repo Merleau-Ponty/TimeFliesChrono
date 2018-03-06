@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lmp.timeflies.dao.DAO_Global;
+import com.lmp.timeflies.metier.Objectif;
 import com.lmp.timeflies.technique.ChronoService;
 
 import java.text.SimpleDateFormat;
@@ -30,7 +31,8 @@ import java.util.Calendar;
 
 public class Play_Objectifs extends ListActivity implements AdapterView.OnItemClickListener {
 
-    private ArrayList<String> lesObjectifs = new ArrayList<String>();
+    private ArrayList<String> lesNomsDesObjectifs = new ArrayList<String>();
+    private ArrayList<Objectif> lesObjectifs = new ArrayList<Objectif>();
     private ListView listV;
 
     DAO_Global sgbd;
@@ -53,7 +55,7 @@ public class Play_Objectifs extends ListActivity implements AdapterView.OnItemCl
         sgbd = new DAO_Global(this);
         sgbd.open();
         init_liste();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lesObjectifs);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lesNomsDesObjectifs);
         // listV = findViewById(R.id.listObj);
         // listV.setAdapter(adapter);
         setListAdapter(adapter);
@@ -72,7 +74,7 @@ public class Play_Objectifs extends ListActivity implements AdapterView.OnItemCl
             mEditor.putString("data", date_time).commit();
             String ok =  mpref.getString("en_cours", "");
             //Toast.makeText(getApplicationContext(), "" + ok, Toast.LENGTH_LONG).show();
-            //mEditor.putString("hours", "1").commit();
+            mEditor.putString("minutes", "2").commit();
             Intent intent_service = new Intent(getApplicationContext(), ChronoService.class);
             startService(intent_service);
             mEditor.putString("en_cours","partie_en_cours").commit();
@@ -87,7 +89,8 @@ public class Play_Objectifs extends ListActivity implements AdapterView.OnItemCl
         /*lesObjectifs.add("Mission # 1");
         lesObjectifs.add("Mission # 2");
         lesObjectifs.add("Mission # 3");*/
-        lesObjectifs = sgbd.donneLesNomsDesObjectifs();
+        lesNomsDesObjectifs = sgbd.donneLesNomsDesObjectifs();
+        lesObjectifs = sgbd.donneLesObjectifs();
     }
 
     @Override
@@ -95,10 +98,10 @@ public class Play_Objectifs extends ListActivity implements AdapterView.OnItemCl
        /* Toast msg = null;
         msg.makeText(getApplicationContext(), "" + i, Toast.LENGTH_LONG).show();*/
         Intent lesEnigmes = new Intent(getApplicationContext(), Play_ListeEnigmes.class);
-        lesEnigmes.putExtra("o_id", lesObjectifs.get(i));
-        lesEnigmes.putExtra("o_lieu", lesObjectifs.get(i));
-        lesEnigmes.putExtra("o_nom", lesObjectifs.get(i));
-        lesEnigmes.putExtra("o_description", lesObjectifs.get(i));
+        lesEnigmes.putExtra("o_id", lesObjectifs.get(i).getO_id());
+        lesEnigmes.putExtra("o_lieu", lesObjectifs.get(i).getO_lieu());
+        lesEnigmes.putExtra("o_nom", lesObjectifs.get(i).getO_nom());
+        lesEnigmes.putExtra("o_description", lesObjectifs.get(i).getO_description());
         startActivity(lesEnigmes);
     }
 

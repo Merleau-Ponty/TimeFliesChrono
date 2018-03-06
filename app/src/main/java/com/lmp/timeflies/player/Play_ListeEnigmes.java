@@ -1,6 +1,5 @@
 package com.lmp.timeflies.player;
 
-import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import com.lmp.timeflies.dao.DAO_Global;
@@ -29,8 +27,8 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
     Objectif ox;
     ArrayList<String> lesEnigmesObj ;
 
-    TextView nomObjectif;
-    TextView descrObjectif;
+    TextView lieutv;
+    TextView descrtv;
     private TextView sous_titre;
     public String date_time;
 
@@ -57,10 +55,11 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
         descr = extras.getString("o_description");
 
         //on affiche les deux
-        sous_titre = (TextView) findViewById(R.id.xnom_tv);
-        descrObjectif = (TextView) findViewById(R.id.xdescr_tv);
-
-        descrObjectif.setText(lieu+" : "+nom);
+        sous_titre = (TextView) findViewById(R.id.xsoustitre_tv);
+        lieutv = (TextView) findViewById(R.id.xdescr_tv);
+        descrtv = (TextView) findViewById(R.id.xdescr_tv2);
+        lieutv.setText("lieu : "+lieu);
+        descrtv.setText(descr);
         //on affiche la liste des énigmes de l'Objectif
         liste_enigmes(id_obj);
 
@@ -107,16 +106,14 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
         startActivity(enigmeCliquee);
     }
 
-
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String str_time = intent.getStringExtra("time");
-            //tv_timer.setText(str_time);
             date_time = str_time;
-            //sous_titre.setText("Votre objectif: "+nom+" - Temps restant : "+date_time);
-            sous_titre.setText("Votre objectif: - Temps restant : "+date_time);
+            sous_titre.setText("Votre objectif: "+nom+"\nTemps restant : "+date_time);
+            //sous_titre.setText("Votre objectif: - Temps restant : "+date_time);
         }
     };
 
@@ -124,7 +121,6 @@ public class Play_ListeEnigmes extends ListActivity implements AdapterView.OnIte
     protected void onResume() {
         super.onResume();
         registerReceiver(broadcastReceiver,new IntentFilter(ChronoService.str_receiver));
-
     }
 
     @Override
