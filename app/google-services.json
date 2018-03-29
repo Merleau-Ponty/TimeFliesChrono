@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "897795089313",
+    "firebase_url": "https://timeflies-0618.firebaseio.com",
+    "project_id": "timeflies-0618",
+    "storage_bucket": "timeflies-0618.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897795089313:android:8afbf54b554f838d",
+        "android_client_info": {
+          "package_name": "com.lmp.timeflies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897795089313-nlajuqd2mug1i5u3ai1l6da48s0jsuoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpxA7jY8Jmw8--FBQR6wTzuUucBgG13PE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
